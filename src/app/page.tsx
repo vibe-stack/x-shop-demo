@@ -5,7 +5,7 @@ import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } f
 import { Button } from "@/components/ui/button"
 import { Minus, Plus } from "lucide-react"
 import { Canvas } from '@react-three/fiber'
-import { Float, OrbitControls, Sparkles, Stage, useGLTF } from '@react-three/drei'
+import { Environment, Float, OrbitControls, Sparkles, Stage, useGLTF } from '@react-three/drei'
 
 export default function ShadowWavesPage() {
   const waves = Array.from({ length: 3 }, (_, i) => i)
@@ -33,7 +33,7 @@ export default function ShadowWavesPage() {
 
   function Model() {
     // Load model with correct path based on environment for github pages
-    const { scene } = useGLTF(process.env.NODE_ENV === "production"? "/x-shop-demo/model.glb":'/model.glb')
+    const { scene } = useGLTF("/x-shop-demo/model.glb")
     return <primitive object={scene} castShadow />
   }
 
@@ -83,7 +83,7 @@ export default function ShadowWavesPage() {
             y: 0, opacity: 1
           }} transition={{
             delay: 0.7, duration: 0.4
-          }} className="mt-12 px-6 text-sm text-white/20">
+          }} className="mt-6 px-6 text-sm text-white/20">
             Model Credits: "Adidas Yeezy Boost 350 V2" (skfb.ly/oFVHw) by Nyilonelycompany is licensed under Creative Commons Attribution.
           </motion.p>
         </div>
@@ -98,17 +98,17 @@ export default function ShadowWavesPage() {
         dismissible={false}
         modal={false}
       >
-        <DrawerContent className="bg-zinc-900 border-zinc-800">
+        <DrawerContent className="bg-zinc-900 border-zinc-800 pb-20">
           <div className="mx-auto w-full max-w-sm p-6">
             <DrawerHeader className="px-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="relative w-full h-48 mb-4 rounded-lg overflow-hidden bg-zinc-800"
+                className="relative w-full h-48 mb-4 rounded-lg overflow-hidden "
               >
                 <Canvas
-                  camera={{ position: [0, 0, 5], fov: 50 }}
+                  camera={{ position: [0, 0, 0.3], fov: 50 }}
                   style={{ background: 'transparent' }}
                   gl={{ alpha: true }}
                   className="w-full h-full"
@@ -120,9 +120,10 @@ export default function ShadowWavesPage() {
                       floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
                       floatingRange={[-0.05, 0.05]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
                     >
-                      <Stage environment="city" intensity={0.8} adjustCamera={true}>
+                      <Environment preset="warehouse" />
+                      {/* <Stage environment="city" intensity={0.8} adjustCamera={true}> */}
                         <Model />
-                      </Stage>
+                      {/* </Stage> */}
                     </Float>
                     <Sparkles speed={0.01} size={0.1} />
                     <OrbitControls minPolarAngle={0} maxPolarAngle={Math.PI / 1.9} makeDefault />
