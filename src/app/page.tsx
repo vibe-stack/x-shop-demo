@@ -108,7 +108,7 @@ export default function ShadowWavesPage() {
                 className="relative w-full h-48 mb-4 rounded-lg overflow-hidden "
               >
                 <Canvas
-                  camera={{ position: [0, 0, 0.3], fov: 50 }}
+                  camera={{ position: [0, 0.15, 0.3], fov: 50 }}
                   style={{ background: 'transparent' }}
                   gl={{ alpha: true }}
                   className="w-full h-full"
