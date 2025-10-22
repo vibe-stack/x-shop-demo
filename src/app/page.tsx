@@ -98,14 +98,14 @@ export default function ShadowWavesPage() {
         dismissible={false}
         modal={false}
       >
-        <DrawerContent className="bg-zinc-900 border-zinc-800 pb-20">
+        <DrawerContent className="bg-zinc-900 border-zinc-800 pb-40">
           <div className="mx-auto w-full max-w-sm p-6">
             <DrawerHeader className="px-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.4 }}
-                className="relative w-full h-48 mb-4 rounded-lg overflow-hidden "
+                className="relative w-full h-48 mb-4 rounded-2xl overflow-hidden "
               >
                 <Canvas
                   camera={{ position: [0, 0.15, 0.3], fov: 50 }}
