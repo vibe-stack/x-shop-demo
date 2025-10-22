@@ -32,7 +32,8 @@ export default function ShadowWavesPage() {
   }, [])
 
   function Model() {
-    const { scene } = useGLTF('/model.glb')
+    // Load model with correct path based on environment for github pages
+    const { scene } = useGLTF(process.env.NODE_ENV === "production"? "/x-shop-demo/model.glb":'/model.glb')
     return <primitive object={scene} castShadow />
   }
 
